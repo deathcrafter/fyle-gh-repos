@@ -1,0 +1,339 @@
+@import url("./fonts.css");
+
+* {
+  font-family: "Mona Sans", sans-serif;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  color: #fdfdfd;
+}
+
+body {
+  background-color: #121212;
+}
+
+#app {
+  position: relative;
+  max-width: 1080px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* #region query form */
+
+form.query-form {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1080px;
+  height: 2rem;
+  padding: 0 1rem;
+  margin: auto;
+}
+
+form.query-form input {
+  height: 100%;
+  padding: 0.5rem 0.75rem;
+  border: magenta 2px solid;
+  border-radius: 0.5rem;
+  background-color: transparent;
+}
+
+form.query-form input:focus {
+  outline: none;
+}
+
+form.query-form input::placeholder {
+  color: #fdfdfd99;
+}
+
+/* #endregion */
+
+/* #region user section */
+
+section.user {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+section.user .user-name {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+section.user .user-avatar {
+  width: 12rem;
+  padding: 0.15rem;
+  border: magenta 3px solid;
+  border-radius: 9999px;
+}
+
+section.user .user-count-link {
+  text-decoration: none;
+}
+
+section.user .user-count-link:hover {
+  color: magenta;
+}
+
+section.user .user-icons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+section.user .user-icons-vertical {
+  flex-direction: column;
+  flex: 1;
+  align-items: end;
+}
+
+@media screen and (min-width: 768px) {
+  section.user .user-icons:not(.user-icons-vertical) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section.user .user-icons.user-icons-vertical {
+    display: none;
+  }
+}
+
+section.user .user-icon-link {
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  aspect-ratio: 1;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 999px;
+  transition: color 0.2s;
+}
+
+section.user .user-icon-link .feather {
+  transition: stroke 0.3s;
+}
+
+section.user .user-icon-link:hover,
+section.user .user-icon-link:hover .feather {
+  cursor: pointer;
+  color: magenta;
+  border-color: magenta;
+  stroke: magenta;
+}
+
+section.user .user-icon-link[disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* #endregion */
+
+/* #region repos section */
+
+section.repos {
+  position: relative;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+section.repos .pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+section.repos .pagination-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 1.5rem;
+  padding: 0.25rem 0.7rem;
+  background-color: transparent;
+  color: #fdfdfd;
+  outline: none;
+  border: magenta 1px solid;
+  border-radius: 0.25rem;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  transition: color 0.2s, background-color 0.2s;
+}
+
+section.repos .pagination-button.nav {
+  color: magenta;
+  font-weight: 700;
+}
+
+section.repos .pagination-button.nav[disabled] {
+  color: white;
+  border: white 1px solid;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+section.repos .pagination-button:hover {
+  color: white;
+  background-color: magenta;
+}
+
+section.repos .pagination-button.active {
+  background-color: magenta;
+}
+
+section.repos #repos-list {
+  display: grid;
+  width: 100%;
+
+  --gap: 1.5rem;
+  --column-width: calc(50% - calc(var(--gap) / 2));
+  gap: var(--gap);
+  grid-template-columns: var(--column-width) var(--column-width);
+}
+
+section.repos .repo-card {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  section.repos #repos-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+section.repos #repos-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 20rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.repos .repos-none {
+  display: flex;
+  height: 5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+section.repos .repos-none p {
+  text-align: center;
+  font-style: italic;
+  color: #fdfdfd;
+  opacity: 0.6;
+}
+
+/* #endregion */
+
+/* #region repo card */
+
+div.repo-card {
+  height: 100%;
+  padding: 1.2rem 1.5rem;
+  border-radius: 1rem;
+  background-color: #3a3a3a;
+  box-shadow: #30303050 0px 0px 8px;
+}
+
+div.repo-card .repo-name {
+  color: magenta;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+div.repo-card .repo-name:hover {
+  cursor: pointer;
+  color: #0099ff;
+  text-shadow: #0099ff30 0px 0px 1px;
+}
+
+div.repo-card .repo-desc {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+div.repo-card .repo-topics {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+div.repo-card .repo-topic {
+  display: block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.55rem;
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: magenta;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: magenta;
+  text-decoration: none;
+  background-color: transparent;
+  transition: all 0.2s;
+}
+
+div.repo-card .repo-topic:hover {
+  color: white;
+  background-color: magenta;
+  transform: translate(-1px, -1px);
+}
+
+/* #endregion */
+
+/* #region loader */
+
+#app #loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #121212;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+#app #loader > div,
+#app #repos-loader > div {
+  animation: linear 1s infinite;
+  -webkit-animation: spin 4s linear infinite reverse;
+  -moz-animation: spin 4s linear infinite reverse;
+  animation: spin 4s linear infinite reverse;
+}
+
+/* #endregion */

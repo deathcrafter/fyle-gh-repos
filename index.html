@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles/index.css" />
+  </head>
+  <body>
+    <form method="get" id="query-form" class="query-form">
+      <label for="query-form-username" class="query-form-label">
+        <span>Username</span>
+        <input
+          id="query-form-username"
+          class="query-form-input"
+          name="username"
+          placeholder="Enter username"
+          onfocus="this.select()"
+        />
+      </label>
+      <label for="query-form-limit" class="query-form-label">
+        <span>Limit</span>
+        <input
+          id="query-form-limit"
+          class="query-form-input"
+          name="limit"
+          type="number"
+          min="1"
+          max="100"
+          value="10"
+        />
+      </label>
+      <input type="submit" hidden />
+    </form>
+    <main id="app">
+      <div id="loader">
+        <div class="loader-img-wrapper">
+          <img src="./assets/img/loader.svg" alt="Loading..." />
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="./scripts/index.js"></script>
+  </body>
+</html>
